@@ -1,0 +1,216 @@
+{
+  "site": {
+    "name": "SAAS LLM Chatbot",
+    "tagline": "Chatbot doanh nghiệp 3 tầng, trả lời đúng dữ liệu - vận hành vững",
+    "description": "Nền tảng chatbot LLM cho doanh nghiệp với routing 3 tầng (Exact QA, Data Query, Fallback), hybrid retrieval, quản trị và quan sát đầy đủ. Kết nối dữ liệu nội bộ qua SQL/API an toàn và đo lường chất lượng theo thời gian.",
+    "domain": "https://your-domain.com",
+    "themeColor": "#0F172A",
+    "language": "vi"
+  },
+  "brand": {
+    "logoText": "SAAS",
+    "logoImage": "",
+    "primaryColor": "#0EA5E9",
+    "accentColor": "#22C55E"
+  },
+  "nav": {
+    "items": [
+      { "label": "Tính năng", "href": "#features" },
+      { "label": "Kiến trúc", "href": "#architecture" },
+      { "label": "Use cases", "href": "#use-cases" },
+      { "label": "Bảng giá", "href": "#pricing" },
+      { "label": "FAQ", "href": "#faq" }
+    ],
+    "cta": { "label": "Yêu cầu demo", "href": "#contact" }
+  },
+  "hero": {
+    "enabled": true,
+    "headline": "Chatbot RAG 3 tầng cho doanh nghiệp: đúng dữ liệu, đúng ngữ cảnh",
+    "subheadline": "Kết hợp Hybrid Retrieval, Data Query an toàn và Multi-LLM để trả lời nhanh, chính xác và có thể kiểm soát chất lượng ở quy mô lớn.",
+    "bullets": [
+      "Routing 3 tầng: Exact QA -> Data Query -> Fallback LLM",
+      "Hybrid Retrieval: BM25 + Vector + Rerank",
+      "SQL/API query có schema validation + whitelist",
+      "Multi-LLM & key rotation, chống rate-limit"
+    ],
+    "primaryCta": { "label": "Yêu cầu demo", "href": "#contact" },
+    "secondaryCta": { "label": "Xem kiến trúc", "href": "#architecture" },
+    "heroStats": [
+      { "label": "Routing tầng", "value": "3" },
+      { "label": "LLM providers", "value": "4+" },
+      { "label": "Tích hợp", "value": "SQL/API" }
+    ]
+  },
+  "trust": {
+    "enabled": true,
+    "logos": ["Fintech Co", "Retail Group", "Logistics Hub", "EdTech Labs", "Healthcare One"],
+    "badges": ["SSO Ready", "On-prem / Cloud", "Observability Built-in"]
+  },
+  "features": {
+    "enabled": true,
+    "title": "Tính năng cốt lõi cho chatbot doanh nghiệp",
+    "subtitle": "Tối ưu độ chính xác, độ trễ và khả năng vận hành ở quy mô lớn.",
+    "items": [
+      { "title": "Routing 3 tầng thông minh", "description": "Exact QA -> Data Query -> Fallback LLM để vừa nhanh vừa đúng dữ liệu.", "icon": "Layers" },
+      { "title": "Hybrid Retrieval + Rerank", "description": "BM25 + vector + rerank giúp tăng độ chính xác trong truy xuất.", "icon": "Search" },
+      { "title": "Data Query an toàn", "description": "Schema validation, whitelist tables/columns, giảm rủi ro truy vấn sai.", "icon": "Shield" },
+      { "title": "Multi-LLM & Key Rotation", "description": "Gemini/OpenAI/Anthropic/Grok, tự xoay key và xử lý rate-limit.", "icon": "Shuffle" },
+      { "title": "Redis Cache + Worker", "description": "Giảm latency, xử lý background jobs không làm chậm chat.", "icon": "Gauge" },
+      { "title": "Observability đầy đủ", "description": "Prometheus metrics, routing logs, theo dõi latency và error rate.", "icon": "BarChart3" },
+      { "title": "Admin UI toàn diện", "description": "Q&A, Data Sources, Query Templates, API Configs, Logs, Eval, Feedback.", "icon": "PanelLeft" },
+      { "title": "Bảo mật & SSO", "description": "JWT, Google SSO, allowlist email/domain.", "icon": "Lock" }
+    ]
+  },
+  "howItWorks": {
+    "enabled": true,
+    "title": "Cách hệ thống hoạt động",
+    "steps": [
+      { "title": "Nạp dữ liệu & cấu hình", "description": "Thêm Q&A, kết nối DB/API, cấu hình query templates." },
+      { "title": "User hỏi - hệ thống định tuyến", "description": "Cache -> Exact match -> Hybrid search -> Data Query." },
+      { "title": "Trả lời có kiểm soát", "description": "Fallback LLM khi cần, kèm logs & metrics." },
+      { "title": "Đo lường & tối ưu", "description": "Eval set + feedback loop, tinh chỉnh ngưỡng routing." }
+    ]
+  },
+  "architecture": {
+    "enabled": true,
+    "title": "Kiến trúc RAG 3 tầng",
+    "subtitle": "FastAPI + PostgreSQL/pgvector + Redis + RQ + Frontend static.",
+    "diagram": {
+      "type": "text",
+      "content": "User -> Cache -> Exact QA -> Hybrid Retrieval -> Data Query (SQL/API) -> Fallback LLM -> Logs/Metrics"
+    }
+  },
+  "demo": {
+    "enabled": true,
+    "title": "Demo nhanh",
+    "subtitle": "Trải nghiệm luồng hỏi đáp và truy vấn dữ liệu nội bộ.",
+    "widget": {
+      "mode": "mock",
+      "mockMessages": [
+        { "role": "user", "content": "Chính sách bảo hành của sản phẩm A là gì?" },
+        { "role": "assistant", "content": "Sản phẩm A bảo hành 12 tháng, đổi mới trong 30 ngày nếu lỗi kỹ thuật." },
+        { "role": "user", "content": "Thống kê doanh số quý này theo khu vực?" },
+        { "role": "assistant", "content": "Đang truy vấn dữ liệu... Q3: Miền Bắc 12.3B, Miền Trung 6.1B, Miền Nam 18.4B." }
+      ]
+    },
+    "openDemoCta": { "label": "Open demo", "href": "#contact" }
+  },
+  "useCases": {
+    "enabled": true,
+    "title": "Use cases phổ biến",
+    "items": [
+      { "title": "CSKH & Hỗ trợ sản phẩm", "description": "Giải đáp nhanh chính sách, hướng dẫn, lỗi thường gặp.", "tags": ["Q&A", "Self-service"] },
+      { "title": "Tra cứu dữ liệu nội bộ", "description": "Hỏi đáp trực tiếp với dữ liệu CRM/ERP qua SQL/API.", "tags": ["Data Query", "SQL/API"] },
+      { "title": "Hỗ trợ IT/HR", "description": "Quy trình nội bộ, onboarding, chính sách nhân sự.", "tags": ["Internal Knowledge"] },
+      { "title": "Báo cáo vận hành", "description": "Tóm tắt KPI, dashboard theo câu hỏi tự nhiên.", "tags": ["Analytics"] }
+    ]
+  },
+  "pricing": {
+    "enabled": true,
+    "title": "Bảng giá linh hoạt",
+    "currency": "USD",
+    "plans": [
+      {
+        "name": "Starter",
+        "priceMonthly": 199,
+        "priceYearly": 1990,
+        "description": "Cho team nhỏ bắt đầu với RAG chatbot.",
+        "features": ["1 workspace", "Q&A + Hybrid Retrieval", "Basic metrics", "Email support"],
+        "highlighted": false,
+        "ctaLabel": "Bắt đầu",
+        "ctaHref": "#contact"
+      },
+      {
+        "name": "Pro",
+        "priceMonthly": 499,
+        "priceYearly": 4990,
+        "description": "Dành cho đội vận hành cần Data Query.",
+        "features": ["Multi-LLM", "SQL/API query", "Eval + feedback", "Priority support"],
+        "highlighted": true,
+        "ctaLabel": "Đặt lịch demo",
+        "ctaHref": "#contact"
+      },
+      {
+        "name": "Enterprise",
+        "priceMonthly": 999,
+        "priceYearly": 9990,
+        "description": "Bảo mật, SSO, tùy biến sâu.",
+        "features": ["SSO + allowlist", "Custom SLA", "On-prem option", "Dedicated success"],
+        "highlighted": false,
+        "ctaLabel": "Liên hệ",
+        "ctaHref": "#contact"
+      }
+    ]
+  },
+  "faq": {
+    "enabled": true,
+    "title": "Câu hỏi thường gặp",
+    "items": [
+      { "q": "Hệ thống có cần dữ liệu sạch không?", "a": "Có. Dữ liệu càng chuẩn hóa, độ chính xác càng cao. Có thể import Excel hoặc kết nối DB/API." },
+      { "q": "Có hỗ trợ nhiều LLM cùng lúc không?", "a": "Có. Multi-LLM và key rotation giúp tối ưu chi phí và độ ổn định." },
+      { "q": "Data Query có an toàn không?", "a": "Có. Query chỉ chạy qua whitelist và schema validation." },
+      { "q": "Có hỗ trợ SSO?", "a": "Có. JWT + Google SSO, allowlist email/domain." },
+      { "q": "Có thể triển khai on-prem không?", "a": "Có. Hỗ trợ Docker/Hybrid tùy nhu cầu." }
+    ]
+  },
+  "contact": {
+    "enabled": true,
+    "title": "Yêu cầu demo",
+    "subtitle": "Để lại thông tin, đội ngũ sẽ liên hệ trong 24h.",
+    "fields": [
+      { "name": "fullName", "label": "Họ và tên", "type": "text", "placeholder": "Nguyễn Văn A", "required": true, "minLength": 2 },
+      { "name": "workEmail", "label": "Email công việc", "type": "email", "placeholder": "name@company.com", "required": true },
+      { "name": "company", "label": "Công ty", "type": "text", "placeholder": "Công ty ABC", "required": true },
+      { "name": "role", "label": "Vai trò", "type": "text", "placeholder": "CTO / Head of CSKH", "required": false },
+      {
+        "name": "useCase",
+        "label": "Use case",
+        "type": "select",
+        "placeholder": "Chọn use case",
+        "required": true,
+        "options": ["CSKH", "Tra cứu dữ liệu", "Hỗ trợ nội bộ", "Báo cáo vận hành"]
+      },
+      { "name": "message", "label": "Mô tả nhu cầu", "type": "textarea", "placeholder": "Bạn muốn chatbot giải quyết vấn đề gì?", "required": true, "minLength": 10 }
+    ],
+    "submit": { "label": "Gửi yêu cầu demo" },
+    "successMessage": "Cảm ơn bạn! Chúng tôi sẽ liên hệ trong vòng 24 giờ."
+  },
+  "footer": {
+    "columns": [
+      {
+        "title": "Sản phẩm",
+        "links": [
+          { "label": "Tính năng", "href": "#features" },
+          { "label": "Kiến trúc", "href": "#architecture" },
+          { "label": "Use cases", "href": "#use-cases" }
+        ]
+      },
+      {
+        "title": "Tài nguyên",
+        "links": [
+          { "label": "Bảng giá", "href": "#pricing" },
+          { "label": "FAQ", "href": "#faq" },
+          { "label": "Demo", "href": "#contact" }
+        ]
+      },
+      {
+        "title": "Công ty",
+        "links": [
+          { "label": "Liên hệ", "href": "#contact" },
+          { "label": "Chính sách", "href": "#privacy" },
+          { "label": "Điều khoản", "href": "#terms" }
+        ]
+      }
+    ],
+    "socials": [
+      { "label": "LinkedIn", "href": "#" },
+      { "label": "GitHub", "href": "#" },
+      { "label": "YouTube", "href": "#" }
+    ],
+    "copyright": "© 2026 saas. All rights reserved."
+  },
+  "legal": {
+    "privacyUrl": "#privacy",
+    "termsUrl": "#terms"
+  }
+}
