@@ -107,6 +107,51 @@ export const siteConfigSchema = z.object({
       href: z.string(),
     }),
   }),
+  backgroundFx: z.object({
+    enabled: z.boolean(),
+    mode: z.enum(["glow-grid", "particles"]),
+    intensity: z.number(),
+    size: z.number(),
+    disableOnMobile: z.boolean(),
+    blur: z.number(),
+    colors: z.array(z.string()).min(1),
+  }),
+  mediaShowcase: z.object({
+    enabled: z.boolean(),
+    title: z.string(),
+    subtitle: z.string(),
+    slides: z.array(
+      z.object({
+        src: z.string(),
+        alt: z.string(),
+        label: z.string(),
+        description: z.string(),
+        tags: z.array(z.string()),
+      })
+    ).min(1),
+    autoplay: z.boolean(),
+    intervalMs: z.number(),
+  }),
+  productVideo: z.object({
+    enabled: z.boolean(),
+    title: z.string(),
+    subtitle: z.string(),
+    poster: z.string(),
+    sources: z.array(
+      z.object({
+        src: z.string(),
+        type: z.string(),
+      })
+    ).min(1),
+    controls: z.boolean(),
+    loop: z.boolean(),
+    muted: z.boolean(),
+  }),
+  backToTop: z.object({
+    enabled: z.boolean(),
+    label: z.string(),
+    offset: z.number(),
+  }),
   useCases: z.object({
     enabled: z.boolean(),
     title: z.string(),

@@ -95,6 +95,73 @@
     },
     "openDemoCta": { "label": "Open demo", "href": "#contact" }
   },
+  "backgroundFx": {
+    "enabled": true,
+    "mode": "glow-grid",
+    "intensity": 0.55,
+    "size": 360,
+    "disableOnMobile": true,
+    "blur": 18,
+    "colors": [
+      "rgba(56,189,248,0.45)",
+      "rgba(34,197,94,0.28)",
+      "rgba(59,130,246,0.32)"
+    ]
+  },
+  "mediaShowcase": {
+    "enabled": true,
+    "title": "Media Showcase",
+    "subtitle": "Nhìn nhanh giao diện, luồng hội thoại và dashboard vận hành.",
+    "slides": [
+      {
+        "src": "/media/slide-1.svg",
+        "alt": "Dashboard overview",
+        "label": "Ops Console",
+        "description": "Quan sát latency, routing logs và chất lượng câu trả lời theo thời gian thực.",
+        "tags": ["Observability", "Routing", "Metrics"]
+      },
+      {
+        "src": "/media/slide-2.svg",
+        "alt": "Chat workflow",
+        "label": "RAG Flow",
+        "description": "Luồng trả lời 3 tầng với truy xuất hybrid và kiểm soát data query.",
+        "tags": ["Hybrid Retrieval", "Guardrails", "Data Query"]
+      },
+      {
+        "src": "/media/slide-3.svg",
+        "alt": "Admin workspace",
+        "label": "Admin Workspace",
+        "description": "Quản trị dữ liệu, feedback loop và evaluation set theo workspace.",
+        "tags": ["Admin UI", "Feedback", "Evaluation"]
+      }
+    ],
+    "autoplay": true,
+    "intervalMs": 4200
+  },
+  "productVideo": {
+    "enabled": true,
+    "title": "Video demo sản phẩm",
+    "subtitle": "Tóm tắt luồng hoạt động và điểm nổi bật trong 60 giây.",
+    "poster": "/media/video-poster.svg",
+    "sources": [
+      {
+        "src": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+        "type": "video/mp4"
+      },
+      {
+        "src": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        "type": "video/webm"
+      }
+    ],
+    "controls": true,
+    "loop": true,
+    "muted": true
+  },
+  "backToTop": {
+    "enabled": true,
+    "label": "Lên đầu trang",
+    "offset": 520
+  },
   "useCases": {
     "enabled": true,
     "title": "Use cases phổ biến",

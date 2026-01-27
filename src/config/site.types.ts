@@ -113,6 +113,55 @@ export type DemoConfig = {
   };
 };
 
+export type BackgroundFxConfig = {
+  enabled: boolean;
+  mode: "glow-grid" | "particles";
+  intensity: number;
+  size: number;
+  disableOnMobile: boolean;
+  blur: number;
+  colors: string[];
+};
+
+export type MediaSlide = {
+  src: string;
+  alt: string;
+  label: string;
+  description: string;
+  tags: string[];
+};
+
+export type MediaShowcaseConfig = {
+  enabled: boolean;
+  title: string;
+  subtitle: string;
+  slides: MediaSlide[];
+  autoplay: boolean;
+  intervalMs: number;
+};
+
+export type VideoSource = {
+  src: string;
+  type: string;
+};
+
+export type ProductVideoConfig = {
+  enabled: boolean;
+  title: string;
+  subtitle: string;
+  poster: string;
+  sources: VideoSource[];
+  controls: boolean;
+  loop: boolean;
+  muted: boolean;
+};
+
+export type BackToTopConfig = {
+  enabled: boolean;
+  label: string;
+  offset: number;
+};
+
 export type UseCaseItem = {
   title: string;
   description: string;
@@ -209,6 +258,10 @@ export type SiteConfig = {
   howItWorks: HowItWorksConfig;
   architecture: ArchitectureConfig;
   demo: DemoConfig;
+  backgroundFx: BackgroundFxConfig;
+  mediaShowcase: MediaShowcaseConfig;
+  productVideo: ProductVideoConfig;
+  backToTop: BackToTopConfig;
   useCases: UseCasesConfig;
   pricing: PricingConfig;
   faq: FaqConfig;
