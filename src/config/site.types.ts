@@ -28,11 +28,6 @@ export type NavConfig = {
   };
 };
 
-export type HeroStatsItem = {
-  label: string;
-  value: string;
-};
-
 export type HeroConfig = {
   enabled: boolean;
   headline: string;
@@ -46,7 +41,6 @@ export type HeroConfig = {
     label: string;
     href: string;
   };
-  heroStats: HeroStatsItem[];
 };
 
 export type TrustConfig = {

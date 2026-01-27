@@ -78,7 +78,7 @@ export function ContactSection({ data }: ContactProps) {
     reset,
     formState: { isSubmitting },
   } = useForm<Record<string, string>>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(formSchema) as never,
     defaultValues,
     mode: "onSubmit",
   });

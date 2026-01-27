@@ -1,5 +1,7 @@
 import { siteConfig } from "@/config/site.loader";
 
+export const dynamic = "force-static";
+
 export default function sitemap() {
   return [
     {

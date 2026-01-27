@@ -21,6 +21,15 @@ type PricingProps = {
 export function PricingSection({ data }: PricingProps) {
   if (!data.enabled) return null;
 
+  const currencyCode = data.currency?.toUpperCase() === "VND" ? "VND" : "USD";
+  const currencyLocale = currencyCode === "VND" ? "vi-VN" : "en-US";
+  const formatPrice = (value: number) =>
+    new Intl.NumberFormat(currencyLocale, {
+      style: "currency",
+      currency: currencyCode,
+      maximumFractionDigits: 0,
+    }).format(value);
+
   return (
     <MotionSection
       id="pricing"
@@ -56,10 +65,16 @@ export function PricingSection({ data }: PricingProps) {
                   </p>
                   <div className="space-y-1">
                     <div className="text-3xl font-semibold text-foreground">
-                      {data.currency} {plan.priceMonthly}
+                      {formatPrice(plan.priceMonthly)}{" "}
+                      <span className="text-base font-normal text-muted-foreground">
+                        / tháng
+                      </span>
                     </div>
                     <div className="text-sm text-muted-foreground">
-                      {data.currency} {plan.priceYearly}
+                      {formatPrice(plan.priceYearly)}{" "}
+                      <span className="text-xs font-normal text-muted-foreground">
+                        / năm
+                      </span>
                     </div>
                   </div>
                   <ul className="space-y-2 text-sm text-muted-foreground">

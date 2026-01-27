@@ -43,12 +43,6 @@ export const siteConfigSchema = z.object({
       label: z.string(),
       href: z.string(),
     }),
-    heroStats: z.array(
-      z.object({
-        label: z.string(),
-        value: z.string(),
-      })
-    ),
   }),
   trust: z.object({
     enabled: z.boolean(),

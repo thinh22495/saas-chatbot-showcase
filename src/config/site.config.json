@@ -1,14 +1,14 @@
 {
   "site": {
-    "name": "SAAS LLM Chatbot",
-    "tagline": "Chatbot doanh nghiệp 3 tầng, trả lời đúng dữ liệu - vận hành vững",
-    "description": "Nền tảng chatbot LLM cho doanh nghiệp với routing 3 tầng (Exact QA, Data Query, Fallback), hybrid retrieval, quản trị và quan sát đầy đủ. Kết nối dữ liệu nội bộ qua SQL/API an toàn và đo lường chất lượng theo thời gian.",
+    "name": "Chatbot Doanh Nghiệp",
+    "tagline": "Chatbot doanh nghiệp, kết hợp ARG-LLM, trả lời đúng dữ liệu - chính xác - vận hành đơn giản",
+    "description": "Nền tảng chatbot ARG kết hợp LLM cho doanh nghiệp với routing nhiều tầng dữ liệu (Exact QA, Data Query, Api Config, Fallback), hybrid retrieval, quản trị và quan sát đầy đủ. Kết nối dữ liệu nội bộ qua SQL/API an toàn và đo lường chất lượng theo thời gian.",
     "domain": "https://your-domain.com",
     "themeColor": "#0F172A",
     "language": "vi"
   },
   "brand": {
-    "logoText": "SAAS",
+    "logoText": "Chatbot Doanh Nghiệp",
     "logoImage": "",
     "primaryColor": "#0EA5E9",
     "accentColor": "#22C55E"
@@ -21,25 +21,20 @@
       { "label": "Bảng giá", "href": "#pricing" },
       { "label": "FAQ", "href": "#faq" }
     ],
-    "cta": { "label": "Yêu cầu demo", "href": "#contact" }
+    "cta": { "label": "Đặt lịch Demo", "href": "#contact" }
   },
   "hero": {
     "enabled": true,
-    "headline": "Chatbot RAG 3 tầng cho doanh nghiệp: đúng dữ liệu, đúng ngữ cảnh",
-    "subheadline": "Kết hợp Hybrid Retrieval, Data Query an toàn và Multi-LLM để trả lời nhanh, chính xác và có thể kiểm soát chất lượng ở quy mô lớn.",
+    "headline": "Chatbot cho doanh nghiệp: đúng dữ liệu, đúng ngữ cảnh",
+    "subheadline": "Truy xuất dữ liệu từ nhiều nguồn: QA, Data Query, API Config, LLM Fallback. Kết hợp Hybrid Retrieval, Data Query an toàn và Multi-LLM để trả lời nhanh, chính xác và có thể kiểm soát chất lượng ở quy mô lớn.",
     "bullets": [
-      "Routing 3 tầng: Exact QA -> Data Query -> Fallback LLM",
+      "Routing nhiều tầng kết hợp: QA -> Data Query -> Api Config -> Fallback LLM",
       "Hybrid Retrieval: BM25 + Vector + Rerank",
       "SQL/API query có schema validation + whitelist",
       "Multi-LLM & key rotation, chống rate-limit"
     ],
-    "primaryCta": { "label": "Yêu cầu demo", "href": "#contact" },
-    "secondaryCta": { "label": "Xem kiến trúc", "href": "#architecture" },
-    "heroStats": [
-      { "label": "Routing tầng", "value": "3" },
-      { "label": "LLM providers", "value": "4+" },
-      { "label": "Tích hợp", "value": "SQL/API" }
-    ]
+    "primaryCta": { "label": "Đặt lịch Demo", "href": "#contact" },
+    "secondaryCta": { "label": "Xem kiến trúc", "href": "#architecture" }
   },
   "trust": {
     "enabled": true,
@@ -51,7 +46,7 @@
     "title": "Tính năng cốt lõi cho chatbot doanh nghiệp",
     "subtitle": "Tối ưu độ chính xác, độ trễ và khả năng vận hành ở quy mô lớn.",
     "items": [
-      { "title": "Routing 3 tầng thông minh", "description": "Exact QA -> Data Query -> Fallback LLM để vừa nhanh vừa đúng dữ liệu.", "icon": "Layers" },
+      { "title": "Routing truy xuất nhiều tầng thông minh", "description": "Exact QA -> Data Query -> Api Config -> Fallback LLM để vừa nhanh vừa đúng dữ liệu.", "icon": "Layers" },
       { "title": "Hybrid Retrieval + Rerank", "description": "BM25 + vector + rerank giúp tăng độ chính xác trong truy xuất.", "icon": "Search" },
       { "title": "Data Query an toàn", "description": "Schema validation, whitelist tables/columns, giảm rủi ro truy vấn sai.", "icon": "Shield" },
       { "title": "Multi-LLM & Key Rotation", "description": "Gemini/OpenAI/Anthropic/Grok, tự xoay key và xử lý rate-limit.", "icon": "Shuffle" },
@@ -65,19 +60,19 @@
     "enabled": true,
     "title": "Cách hệ thống hoạt động",
     "steps": [
-      { "title": "Nạp dữ liệu & cấu hình", "description": "Thêm Q&A, kết nối DB/API, cấu hình query templates." },
-      { "title": "User hỏi - hệ thống định tuyến", "description": "Cache -> Exact match -> Hybrid search -> Data Query." },
+      { "title": "Nạp dữ liệu & cấu hình", "description": "Thêm dữ liệu Q&A, kết nối DB/API, cấu hình query templates." },
+      { "title": "User hỏi - hệ thống định tuyến", "description": "Cache -> Exact match -> Hybrid search -> Truy xuất dữ liệu." },
       { "title": "Trả lời có kiểm soát", "description": "Fallback LLM khi cần, kèm logs & metrics." },
-      { "title": "Đo lường & tối ưu", "description": "Eval set + feedback loop, tinh chỉnh ngưỡng routing." }
+      { "title": "Đo lường & tối ưu", "description": "Đánh giá + feedback loop, tinh chỉnh ngưỡng routing." }
     ]
   },
   "architecture": {
     "enabled": true,
-    "title": "Kiến trúc RAG 3 tầng",
+    "title": "Kiến trúc RAG nhiều tầng truy xuất dữ liệu",
     "subtitle": "FastAPI + PostgreSQL/pgvector + Redis + RQ + Frontend static.",
     "diagram": {
       "type": "text",
-      "content": "User -> Cache -> Exact QA -> Hybrid Retrieval -> Data Query (SQL/API) -> Fallback LLM -> Logs/Metrics"
+      "content": "User -> Cache -> Tìm kiếm Multi-vecter -> Hybrid Retrieval -> Truy xuất dữ liệu -> Logs/Metrics -> Admin UI -> Theo dõi & Tối ưu"
     }
   },
   "demo": {
@@ -93,7 +88,7 @@
         { "role": "assistant", "content": "Đang truy vấn dữ liệu... Q3: Miền Bắc 12.3B, Miền Trung 6.1B, Miền Nam 18.4B." }
       ]
     },
-    "openDemoCta": { "label": "Open demo", "href": "#contact" }
+    "openDemoCta": { "label": "Đặt lịch Demo", "href": "#contact" }
   },
   "backgroundFx": {
     "enabled": true,
@@ -175,34 +170,34 @@
   "pricing": {
     "enabled": true,
     "title": "Bảng giá linh hoạt",
-    "currency": "USD",
+    "currency": "VND",
     "plans": [
       {
         "name": "Starter",
-        "priceMonthly": 199,
-        "priceYearly": 1990,
-        "description": "Cho team nhỏ bắt đầu với RAG chatbot.",
-        "features": ["1 workspace", "Q&A + Hybrid Retrieval", "Basic metrics", "Email support"],
+        "priceMonthly": 1000000,
+        "priceYearly": 11000000,
+        "description": "Dành cho mô hình vừa, nhỏ bắt đầu với RAG chatbot.",
+        "features": ["Tài liệu tĩnh (docx, xlsx, pdf,...)", "Bộ câu hỏi Q&A", "Hybrid Retrieval", "Trang theo dõi cơ bản", "Hỗ trợ qua email"],
         "highlighted": false,
         "ctaLabel": "Bắt đầu",
         "ctaHref": "#contact"
       },
       {
         "name": "Pro",
-        "priceMonthly": 499,
-        "priceYearly": 4990,
-        "description": "Dành cho đội vận hành cần Data Query.",
-        "features": ["Multi-LLM", "SQL/API query", "Eval + feedback", "Priority support"],
+        "priceMonthly": 2000000,
+        "priceYearly": 22000000,
+        "description": "Dành cho đội vận hành cần Data Query Database.",
+        "features": ["Database support (sql, postgreSQL, mySQL,..)", "Multi-LLM", "Trang theo dõi nâng cao", "Hỗ trợ ưu tiên"],
         "highlighted": true,
         "ctaLabel": "Đặt lịch demo",
         "ctaHref": "#contact"
       },
       {
         "name": "Enterprise",
-        "priceMonthly": 999,
-        "priceYearly": 9990,
-        "description": "Bảo mật, SSO, tùy biến sâu.",
-        "features": ["SSO + allowlist", "Custom SLA", "On-prem option", "Dedicated success"],
+        "priceMonthly": 3000000,
+        "priceYearly": 35000000,
+        "description": "Dành cho đội ngũ kỹ thuật cần tùy biến sâu.",
+        "features": ["Supper Admin", "Custom route", "Custom model", "Trang theo dõi mở rộng", "Hỗ trợ một một"],
         "highlighted": false,
         "ctaLabel": "Liên hệ",
         "ctaHref": "#contact"
@@ -222,7 +217,7 @@
   },
   "contact": {
     "enabled": true,
-    "title": "Yêu cầu demo",
+    "title": "Đặt lịch Demo",
     "subtitle": "Để lại thông tin, đội ngũ sẽ liên hệ trong 24h.",
     "fields": [
       { "name": "fullName", "label": "Họ và tên", "type": "text", "placeholder": "Nguyễn Văn A", "required": true, "minLength": 2 },
@@ -239,7 +234,7 @@
       },
       { "name": "message", "label": "Mô tả nhu cầu", "type": "textarea", "placeholder": "Bạn muốn chatbot giải quyết vấn đề gì?", "required": true, "minLength": 10 }
     ],
-    "submit": { "label": "Gửi yêu cầu demo" },
+    "submit": { "label": "Gửi yêu cầu đặt lịch demo" },
     "successMessage": "Cảm ơn bạn! Chúng tôi sẽ liên hệ trong vòng 24 giờ."
   },
   "footer": {
@@ -274,7 +269,7 @@
       { "label": "GitHub", "href": "#" },
       { "label": "YouTube", "href": "#" }
     ],
-    "copyright": "© 2026 saas. All rights reserved."
+    "copyright": "© 2026 Chatbot Doanh Nghiệp. All rights reserved."
   },
   "legal": {
     "privacyUrl": "#privacy",

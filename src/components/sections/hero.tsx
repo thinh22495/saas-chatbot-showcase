@@ -66,16 +66,21 @@ export function HeroSection({ data, tagline, video }: HeroProps) {
           </div>
         </MotionDiv>
 
-        <MotionDiv
-          variants={sectionVariants}
-          className="grid gap-4 rounded-3xl border border-border/60 bg-card/80 p-6 shadow-xl backdrop-blur"
-        >
-          {data.heroStats.length === 0 && hasVideo ? (
+        {hasVideo ? (
+          <MotionDiv
+            variants={sectionVariants}
+            className="grid gap-4 rounded-3xl border border-border/60 bg-card/80 p-6 shadow-xl backdrop-blur"
+          >
             <div className="rounded-2xl border border-border/60 bg-background/80 p-4">
               <span className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
                 {video?.title}
               </span>
-              <div className="mt-3 overflow-hidden rounded-xl border border-border/60 bg-black">
+              {video?.subtitle ? (
+                <p className="mt-2 text-sm text-muted-foreground">
+                  {video.subtitle}
+                </p>
+              ) : null}
+              <div className="mt-4 overflow-hidden rounded-xl border border-border/60 bg-black">
                 <video
                   className="aspect-video h-full w-full"
                   poster={video?.poster}
@@ -95,54 +100,8 @@ export function HeroSection({ data, tagline, video }: HeroProps) {
                 </video>
               </div>
             </div>
-          ) : null}
-
-          {data.heroStats.map((stat, index) => {
-            if (index === 0 && hasVideo) {
-              return (
-                <div
-                  key={`${stat.label}-video`}
-                  className="rounded-2xl border border-border/60 bg-background/80 p-4"
-                >
-                  <span className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                    {stat.label}
-                  </span>
-                  <div className="mt-3 overflow-hidden rounded-xl border border-border/60 bg-black">
-                    <video
-                      className="aspect-video h-full w-full"
-                      poster={video?.poster}
-                      controls={video?.controls}
-                      loop={video?.loop}
-                      muted={video?.muted}
-                      playsInline
-                      preload="metadata"
-                    >
-                      {video?.sources.map((source) => (
-                        <source
-                          key={`${source.src}-${source.type}`}
-                          src={source.src}
-                          type={source.type}
-                        />
-                      ))}
-                    </video>
-                  </div>
-                </div>
-              );
-            }
-
-            return (
-              <div
-                key={stat.label}
-                className="flex items-center justify-between rounded-2xl border border-border/60 bg-background/80 px-4 py-3"
-              >
-                <span className="text-sm text-muted-foreground">{stat.label}</span>
-                <span className="text-2xl font-semibold text-foreground">
-                  {stat.value}
-                </span>
-              </div>
-            );
-          })}
-        </MotionDiv>
+          </MotionDiv>
+        ) : null}
       </div>
     </MotionSection>
   );
