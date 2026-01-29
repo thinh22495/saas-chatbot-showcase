@@ -3,7 +3,7 @@
     "name": "Chatbot Doanh Nghiệp",
     "tagline": "Chatbot doanh nghiệp, kết hợp ARG-LLM, trả lời đúng dữ liệu - chính xác - vận hành đơn giản",
     "description": "Nền tảng chatbot ARG kết hợp LLM cho doanh nghiệp với routing nhiều tầng dữ liệu (Exact QA, Data Query, Api Config, Fallback), hybrid retrieval, quản trị và quan sát đầy đủ. Kết nối dữ liệu nội bộ qua SQL/API an toàn và đo lường chất lượng theo thời gian.",
-    "domain": "https://your-domain.com",
+    "domain": "https://chatbot-doanh-nghiep.pages.dev/",
     "themeColor": "#0F172A",
     "language": "vi"
   },
@@ -169,7 +169,7 @@
   },
   "pricing": {
     "enabled": true,
-    "title": "Bảng giá linh hoạt",
+    "title": "Bảng giá linh hoạt cho doanh nghiệp",
     "currency": "VND",
     "plans": [
       {
@@ -196,7 +196,7 @@
         "name": "Enterprise",
         "priceMonthly": 3000000,
         "priceYearly": 35000000,
-        "description": "Dành cho đội ngũ kỹ thuật cần tùy biến sâu.",
+        "description": "Dành cho đội ngũ kỹ thuật/ vận hành cần tùy biến sâu.",
         "features": ["Supper Admin", "Custom route", "Custom model", "Trang theo dõi mở rộng", "Hỗ trợ một một"],
         "highlighted": false,
         "ctaLabel": "Liên hệ",
@@ -265,8 +265,8 @@
       }
     ],
     "socials": [
-      { "label": "LinkedIn", "href": "#" },
-      { "label": "GitHub", "href": "#" },
+      { "label": "LinkedIn", "href": "https://www.linkedin.com/in/thinh-tran-huu-b78783259/" },
+      { "label": "GitHub", "href": "https://github.com/thinh22495" },
       { "label": "YouTube", "href": "#" }
     ],
     "copyright": "© 2026 Chatbot Doanh Nghiệp. All rights reserved."
