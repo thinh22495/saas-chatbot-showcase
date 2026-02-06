@@ -222,6 +222,7 @@
     "fields": [
       { "name": "fullName", "label": "Họ và tên", "type": "text", "placeholder": "Nguyễn Văn A", "required": true, "minLength": 2 },
       { "name": "workEmail", "label": "Email công việc", "type": "email", "placeholder": "name@company.com", "required": true },
+      { "name": "phone", "label": "Số điện thoại", "type": "tel", "placeholder": "0912345678", "required": false, "minLength": 10 },
       { "name": "company", "label": "Công ty", "type": "text", "placeholder": "Công ty ABC", "required": true },
       { "name": "role", "label": "Vai trò", "type": "text", "placeholder": "CTO / Head of CSKH", "required": false },
       {

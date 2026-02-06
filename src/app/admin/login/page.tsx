@@ -45,7 +45,7 @@ export default function AdminLoginPage() {
             <div className="space-y-1">
               <h1 className="text-2xl font-serif">Admin Login</h1>
               <p className="text-sm text-muted-foreground">
-                Đăng nhập để xem yêu cầu demo.
+                Trang quản trị viên.
               </p>
             </div>
 

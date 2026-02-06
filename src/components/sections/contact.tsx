@@ -99,28 +99,66 @@ export function ContactSection({ data }: ContactProps) {
   if (!data.enabled) return null;
 
   return (
-    <MotionSection
-      id="contact"
-      variants={staggerContainer}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
-      className="border-b border-border/60 bg-muted/30"
-    >
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-20 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-        <MotionDiv variants={sectionVariants} className="space-y-4">
-          <h2 className="text-3xl font-serif md:text-4xl">{data.title}</h2>
-          <p className="text-muted-foreground">{data.subtitle}</p>
-        </MotionDiv>
+    <>
+      {/* Success Popup */}
+      {submitted && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <MotionDiv
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="relative max-w-md rounded-2xl border border-border/60 bg-card p-8 shadow-2xl"
+          >
+            <div className="mb-4 flex justify-center">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-500/10">
+                <svg
+                  className="h-8 w-8 text-green-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              </div>
+            </div>
+            <h3 className="mb-2 text-center text-xl font-semibold text-foreground">
+              Cảm ơn bạn đã liên hệ!
+            </h3>
+            <p className="mb-6 text-center text-muted-foreground">
+              Liên hệ của bạn đã được ghi nhận. Chúng tôi sẽ phản hồi lại bạn sớm nhất.
+            </p>
+            <Button
+              variant="brand"
+              className="w-full"
+              onClick={() => setSubmitted(false)}
+            >
+              Đóng
+            </Button>
+          </MotionDiv>
+        </div>
+      )}
 
-        <MotionDiv variants={sectionVariants}>
-          <Card className="border-border/60 bg-card/80 shadow-lg">
-            <CardContent className="space-y-4 p-6">
-              {submitted ? (
-                <p className="rounded-lg border border-border/60 bg-muted/40 p-4 text-sm text-muted-foreground">
-                  {data.successMessage}
-                </p>
-              ) : (
+      <MotionSection
+        id="contact"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        className="border-b border-border/60 bg-muted/30"
+      >
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-20 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <MotionDiv variants={sectionVariants} className="space-y-4">
+            <h2 className="text-3xl font-serif md:text-4xl">{data.title}</h2>
+            <p className="text-muted-foreground">{data.subtitle}</p>
+          </MotionDiv>
+
+          <MotionDiv variants={sectionVariants}>
+            <Card className="border-border/60 bg-card/80 shadow-lg">
+              <CardContent className="space-y-4 p-6">
                 <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
                   {data.fields.map((field) => (
                     <div key={field.name} className="space-y-2">
@@ -165,11 +203,11 @@ export function ContactSection({ data }: ContactProps) {
                     {data.submit.label}
                   </Button>
                 </form>
-              )}
-            </CardContent>
-          </Card>
-        </MotionDiv>
-      </div>
-    </MotionSection>
+              </CardContent>
+            </Card>
+          </MotionDiv>
+        </div>
+      </MotionSection>
+    </>
   );
 }

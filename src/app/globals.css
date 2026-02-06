@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #f8fafc;
@@ -29,27 +31,12 @@
   --brand-accent: #22c55e;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-brand-primary: var(--brand-primary);
-  --color-brand-accent: var(--brand-accent);
-  --font-sans: var(--font-display);
-  --font-serif: var(--font-accent);
-  --radius-lg: var(--radius);
-}
+@layer base {
+  * {
+    @apply border-border;
+  }
 
-* {
-  @apply border-border;
-}
-
-body {
-  @apply bg-background text-foreground antialiased;
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
 }

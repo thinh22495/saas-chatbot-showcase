@@ -1,10 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export",
-  images: {
-    unoptimized: true,
-  },
+  // Removed "output: export" to support dynamic admin pages with authentication
 };
 
 export default nextConfig;

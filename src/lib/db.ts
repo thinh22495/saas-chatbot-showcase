@@ -41,6 +41,7 @@ export function getDb() {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       full_name TEXT NOT NULL,
       work_email TEXT NOT NULL,
+      phone TEXT,
       company TEXT NOT NULL,
       role TEXT,
       use_case TEXT NOT NULL,

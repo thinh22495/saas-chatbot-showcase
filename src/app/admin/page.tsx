@@ -4,8 +4,8 @@ import AdminDashboard from "@/components/admin/admin-dashboard";
 
 export const dynamic = "force-dynamic";
 
-export default function AdminPage() {
-  const session = getSessionFromCookies();
+export default async function AdminPage() {
+  const session = await getSessionFromCookies();
   if (!session) {
     redirect("/admin/login");
   }

@@ -1,8 +1,8 @@
 import { getSessionFromCookies } from "@/lib/auth";
 import { getDb } from "@/lib/db";
 
-function requireAuth() {
-  const session = getSessionFromCookies();
+async function requireAuth() {
+  const session = await getSessionFromCookies();
   if (!session) {
     return new Response(JSON.stringify({ ok: false, error: "Unauthorized" }), {
       status: 401,
@@ -21,13 +21,13 @@ function escapeCsv(value: unknown) {
 }
 
 export async function GET() {
-  const authError = requireAuth();
+  const authError = await requireAuth();
   if (authError) return authError;
 
   const db = getDb();
   const rows = db
     .prepare(
-      `SELECT full_name, work_email, company, role, use_case, message, created_at
+      `SELECT full_name, work_email, phone, company, role, use_case, message, created_at
        FROM demo_requests
        ORDER BY datetime(created_at) DESC`
     )
@@ -36,6 +36,7 @@ export async function GET() {
   const headers = [
     "full_name",
     "work_email",
+    "phone",
     "company",
     "role",
     "use_case",

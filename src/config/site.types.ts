@@ -200,7 +200,7 @@ export type FaqConfig = {
 export type ContactField = {
   name: string;
   label: string;
-  type: "text" | "email" | "select" | "textarea";
+  type: "text" | "email" | "tel" | "select" | "textarea";
   placeholder?: string;
   required?: boolean;
   minLength?: number;

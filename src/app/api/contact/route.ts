@@ -19,6 +19,7 @@ export async function POST(request: Request) {
 
   const fullName = toText(payload.fullName);
   const workEmail = toText(payload.workEmail);
+  const phone = toText(payload.phone);
   const company = toText(payload.company);
   const role = toText(payload.role);
   const useCase = toText(payload.useCase);
@@ -34,11 +35,12 @@ export async function POST(request: Request) {
   const db = getDb();
   db.prepare(
     `INSERT INTO demo_requests
-      (full_name, work_email, company, role, use_case, message, created_at, user_agent, referer, ip)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      (full_name, work_email, phone, company, role, use_case, message, created_at, user_agent, referer, ip)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
   ).run(
     fullName,
     workEmail,
+    phone || null,
     company,
     role || null,
     useCase,

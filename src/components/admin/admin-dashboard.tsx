@@ -10,6 +10,7 @@ type DemoRequest = {
   id: number;
   full_name: string;
   work_email: string;
+  phone?: string | null;
   company: string;
   role?: string | null;
   use_case: string;
@@ -128,6 +129,7 @@ export default function AdminDashboard() {
                     <tr>
                       <th className="px-4 py-3">Tên</th>
                       <th className="px-4 py-3">Email</th>
+                      <th className="px-4 py-3">Số ĐT</th>
                       <th className="px-4 py-3">Công ty</th>
                       <th className="px-4 py-3">Use case</th>
                       <th className="px-4 py-3">Ngày</th>
@@ -148,6 +150,7 @@ export default function AdminDashboard() {
                           ) : null}
                         </td>
                         <td className="px-4 py-3">{item.work_email}</td>
+                        <td className="px-4 py-3">{item.phone || "-"}</td>
                         <td className="px-4 py-3">{item.company}</td>
                         <td className="px-4 py-3">
                           <div className="font-medium text-foreground">

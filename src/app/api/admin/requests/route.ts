@@ -1,8 +1,8 @@
 import { getSessionFromCookies } from "@/lib/auth";
 import { getDb } from "@/lib/db";
 
-function requireAuth() {
-  const session = getSessionFromCookies();
+async function requireAuth() {
+  const session = await getSessionFromCookies();
   if (!session) {
     return new Response(JSON.stringify({ ok: false, error: "Unauthorized" }), {
       status: 401,
@@ -13,7 +13,7 @@ function requireAuth() {
 }
 
 export async function GET(request: Request) {
-  const authError = requireAuth();
+  const authError = await requireAuth();
   if (authError) return authError;
 
   const url = new URL(request.url);
@@ -31,7 +31,7 @@ export async function GET(request: Request) {
 
   const rows = db
     .prepare(
-      `SELECT id, full_name, work_email, company, role, use_case, message, created_at
+      `SELECT id, full_name, work_email, phone, company, role, use_case, message, created_at
        FROM demo_requests
        ORDER BY datetime(created_at) DESC
        LIMIT ? OFFSET ?`
@@ -54,7 +54,7 @@ export async function GET(request: Request) {
 }
 
 export async function DELETE(request: Request) {
-  const authError = requireAuth();
+  const authError = await requireAuth();
   if (authError) return authError;
 
   const url = new URL(request.url);

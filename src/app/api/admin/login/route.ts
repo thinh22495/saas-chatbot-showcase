@@ -34,7 +34,7 @@ export async function POST(request: Request) {
   }
 
   const token = createSessionToken(user.id);
-  setSessionCookie(token);
+  await setSessionCookie(token);
 
   return new Response(JSON.stringify({ ok: true }), {
     status: 200,
