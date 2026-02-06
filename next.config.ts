@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export",
+  // Removed output: "export" to support API routes on Vercel
+  // Cloudflare Pages will use /functions instead
 };
 
 export default nextConfig;
