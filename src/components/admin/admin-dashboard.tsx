@@ -165,8 +165,9 @@ export default function AdminDashboard() {
                         </td>
                         <td className="px-4 py-3">
                           <Button
-                            variant="destructive"
+                            variant="outline"
                             size="sm"
+                            className="border-red-600 text-red-600 hover:bg-red-600 hover:text-white"
                             onClick={() => handleDelete(item.id)}
                           >
                             Xóa
