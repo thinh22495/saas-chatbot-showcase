@@ -1,4 +1,4 @@
-import { getDb } from "@/lib/db";
+import { sendAllNotifications } from "@/lib/notifications";
 
 function toText(value: unknown) {
   if (value === null || value === undefined) return "";
@@ -32,24 +32,16 @@ export async function POST(request: Request) {
     );
   }
 
-  const db = getDb();
-  db.prepare(
-    `INSERT INTO demo_requests
-      (full_name, work_email, phone, company, role, use_case, message, created_at, user_agent, referer, ip)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
-  ).run(
+  // Gửi notifications qua Email, Google Sheets, Telegram đồng thời
+  await sendAllNotifications({
     fullName,
     workEmail,
-    phone || null,
+    phone,
     company,
-    role || null,
+    role,
     useCase,
     message,
-    new Date().toISOString(),
-    request.headers.get("user-agent") || null,
-    request.headers.get("referer") || null,
-    request.headers.get("x-forwarded-for") || null
-  );
+  });
 
   return new Response(JSON.stringify({ ok: true }), {
     status: 200,
