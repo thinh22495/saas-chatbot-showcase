@@ -1,68 +1,220 @@
-type RequestContext = {
-  request: Request;
-  env?: {
-    GOOGLE_SHEETS_WEBHOOK?: string;
-    GOOGLE_SHEETS_SECRET?: string;
-  };
+import { Resend } from "resend";
+
+type DemoRequest = {
+  fullName: string;
+  workEmail: string;
+  phone?: string;
+  company: string;
+  role?: string;
+  useCase: string;
+  message: string;
 };
 
-function jsonResponse(body: unknown, status = 200) {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { "Content-Type": "application/json" },
+function toText(value: unknown) {
+  if (value === null || value === undefined) return "";
+  return String(value).trim();
+}
+
+// Email Notification với Resend
+async function sendEmailNotification(data: DemoRequest, env: any) {
+  const resendApiKey = env.RESEND_API_KEY;
+  const notifyEmail = env.NOTIFY_EMAIL;
+
+  if (!resendApiKey || !notifyEmail) {
+    console.warn("Email notification skipped: Missing RESEND_API_KEY or NOTIFY_EMAIL");
+    return;
+  }
+
+  try {
+    const resend = new Resend(resendApiKey);
+
+    await resend.emails.send({
+      from: "Demo Request <onboarding@resend.dev>",
+      to: notifyEmail,
+      subject: `🎯 Yêu cầu demo mới từ ${data.company}`,
+      html: `
+        <h2>Yêu cầu demo mới</h2>
+        <p><strong>Họ tên:</strong> ${data.fullName}</p>
+        <p><strong>Email:</strong> ${data.workEmail}</p>
+        ${data.phone ? `<p><strong>Số điện thoại:</strong> ${data.phone}</p>` : ""}
+        <p><strong>Công ty:</strong> ${data.company}</p>
+        ${data.role ? `<p><strong>Vai trò:</strong> ${data.role}</p>` : ""}
+        <p><strong>Use case:</strong> ${data.useCase}</p>
+        <p><strong>Mô tả:</strong></p>
+        <p>${data.message}</p>
+        <hr>
+        <p><small>Gửi lúc: ${new Date().toLocaleString("vi-VN")}</small></p>
+      `,
+    });
+
+    console.log("✅ Email notification sent");
+  } catch (error) {
+    console.error("❌ Email notification failed:", error);
+  }
+}
+
+// Google Sheets Integration
+async function saveToGoogleSheets(data: DemoRequest, env: any) {
+  const scriptUrl = env.GOOGLE_SHEETS_SCRIPT_URL;
+
+  if (!scriptUrl) {
+    console.warn("Google Sheets skipped: Missing GOOGLE_SHEETS_SCRIPT_URL");
+    return;
+  }
+
+  try {
+    const response = await fetch(scriptUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        fullName: data.fullName,
+        workEmail: data.workEmail,
+        phone: data.phone || "",
+        company: data.company,
+        role: data.role || "",
+        useCase: data.useCase,
+        message: data.message,
+        timestamp: new Date().toISOString(),
+      }),
+    });
+
+    if (response.ok) {
+      console.log("✅ Saved to Google Sheets");
+    } else {
+      console.error("❌ Google Sheets failed:", response.statusText);
+    }
+  } catch (error) {
+    console.error("❌ Google Sheets error:", error);
+  }
+}
+
+// Telegram Bot Notification
+async function sendTelegramNotification(data: DemoRequest, env: any) {
+  const botToken = env.TELEGRAM_BOT_TOKEN;
+  const chatId = env.TELEGRAM_CHAT_ID;
+
+  if (!botToken || !chatId) {
+    console.warn("Telegram skipped: Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID");
+    return;
+  }
+
+  try {
+    const message = `
+🎯 *Yêu cầu demo mới*
+
+👤 *Họ tên:* ${data.fullName}
+📧 *Email:* ${data.workEmail}
+${data.phone ? `📱 *Số ĐT:* ${data.phone}` : ""}
+🏢 *Công ty:* ${data.company}
+${data.role ? `💼 *Vai trò:* ${data.role}` : ""}
+📋 *Use case:* ${data.useCase}
+
+💬 *Mô tả:*
+${data.message}
+
+⏰ ${new Date().toLocaleString("vi-VN")}
+    `.trim();
+
+    const response = await fetch(
+      `https://api.telegram.org/bot${botToken}/sendMessage`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+          parse_mode: "Markdown",
+        }),
+      }
+    );
+
+    if (response.ok) {
+      console.log("✅ Telegram notification sent");
+    } else {
+      console.error("❌ Telegram failed:", response.statusText);
+    }
+  } catch (error) {
+    console.error("❌ Telegram error:", error);
+  }
+}
+
+// Gửi tất cả notifications đồng thời
+async function sendAllNotifications(data: DemoRequest, env: any) {
+  await Promise.allSettled([
+    sendEmailNotification(data, env),
+    saveToGoogleSheets(data, env),
+    sendTelegramNotification(data, env),
+  ]);
+}
+
+// Cloudflare Pages Function
+export async function onRequestPost(context: any) {
+  let payload: Record<string, unknown>;
+
+  try {
+    payload = await context.request.json();
+  } catch {
+    return new Response(JSON.stringify({ ok: false, error: "Invalid JSON" }), {
+      status: 400,
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  const fullName = toText(payload.fullName);
+  const workEmail = toText(payload.workEmail);
+  const phone = toText(payload.phone);
+  const company = toText(payload.company);
+  const role = toText(payload.role);
+  const useCase = toText(payload.useCase);
+  const message = toText(payload.message);
+
+  if (!fullName || !workEmail || !company || !useCase || !message) {
+    return new Response(
+      JSON.stringify({ ok: false, error: "Missing required fields" }),
+      {
+        status: 400,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      }
+    );
+  }
+
+  // Gửi notifications qua Email, Google Sheets, Telegram đồng thời
+  await sendAllNotifications(
+    {
+      fullName,
+      workEmail,
+      phone,
+      company,
+      role,
+      useCase,
+      message,
+    },
+    context.env
+  );
+
+  return new Response(JSON.stringify({ ok: true }), {
+    status: 200,
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
   });
 }
 
-function toSafeText(value: unknown) {
-  if (value === null || value === undefined) return "";
-  if (typeof value === "string") return value.trim();
-  return String(value);
-}
-
-export async function onRequestPost({ request, env }: RequestContext) {
-  try {
-    const payload = await request.json();
-    const webhook = env?.GOOGLE_SHEETS_WEBHOOK?.trim();
-
-    if (!webhook) {
-      console.warn("Missing GOOGLE_SHEETS_WEBHOOK env var.");
-      return jsonResponse({ ok: false, error: "Webhook not configured" }, 500);
-    }
-
-    const body: Record<string, unknown> = {
-      ...payload,
-      createdAt: new Date().toISOString(),
-      meta: {
-        userAgent: toSafeText(request.headers.get("user-agent")),
-        referer: toSafeText(request.headers.get("referer")),
-        ip: toSafeText(request.headers.get("cf-connecting-ip")),
-      },
-    };
-
-    if (env?.GOOGLE_SHEETS_SECRET) {
-      body.token = env.GOOGLE_SHEETS_SECRET;
-    }
-
-    const response = await fetch(webhook, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Sheets webhook error:", response.status, errorText);
-      return jsonResponse({ ok: false, error: "Webhook request failed" }, 502);
-    }
-  } catch (error) {
-    return jsonResponse({ ok: false, error: "Invalid JSON" }, 400);
-  }
-
-  return jsonResponse({ ok: true });
-}
-
-export function onRequestGet() {
-  return new Response("Method Not Allowed", { status: 405 });
+// Handle OPTIONS for CORS
+export async function onRequestOptions() {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+    },
+  });
 }
