@@ -192,7 +192,7 @@ export const siteConfigSchema = z.object({
       z.object({
         name: z.string(),
         label: z.string(),
-        type: z.enum(["text", "email", "select", "textarea"]),
+        type: z.enum(["text", "email", "tel", "select", "textarea"]),
         placeholder: z.string().optional(),
         required: z.boolean().optional(),
         minLength: z.number().optional(),
