@@ -109,24 +109,31 @@
     "subtitle": "Nhìn nhanh giao diện, luồng hội thoại và dashboard vận hành.",
     "slides": [
       {
-        "src": "/media/slide-1.svg",
-        "alt": "Dashboard overview",
-        "label": "Ops Console",
+        "src": "/media/chuc-nang-chat.png",
+        "alt": "Chatbot hội thoại",
+        "label": "Chatbot hội thoại",
         "description": "Quan sát latency, routing logs và chất lượng câu trả lời theo thời gian thực.",
         "tags": ["Observability", "Routing", "Metrics"]
       },
       {
-        "src": "/media/slide-2.svg",
-        "alt": "Chat workflow",
-        "label": "RAG Flow",
-        "description": "Luồng trả lời 3 tầng với truy xuất hybrid và kiểm soát data query.",
+        "src": "/media/chuc-nang-tong-quan-he-thong.png",
+        "alt": "Giám sát hệ thống",
+        "label": "Giám sát hệ thống",
+        "description": "Giám sát hệ thống chuyên sâu, nhiều tính năng, quản trị dễ dàng",
         "tags": ["Hybrid Retrieval", "Guardrails", "Data Query"]
       },
       {
-        "src": "/media/slide-3.svg",
-        "alt": "Admin workspace",
-        "label": "Admin Workspace",
+        "src": "/media/chuc-nang-giam-sat-van-hanh.png",
+        "alt": "Giám sát vận hành",
+        "label": "Giám sát vận hành",
         "description": "Quản trị dữ liệu, feedback loop và evaluation set theo workspace.",
+        "tags": ["Admin UI", "Feedback", "Evaluation"]
+      },
+      {
+        "src": "/media/chuc-nang-cau-hinh-he-thong.png",
+        "alt": "Tuỳ chỉnh chuyên sâu",
+        "label": "Tuỳ chỉnh chuyên sâu",
+        "description": "Cung cấp các tùy chọn cấu hình nâng cao cho hệ thống.",
         "tags": ["Admin UI", "Feedback", "Evaluation"]
       }
     ],
@@ -140,12 +147,8 @@
     "poster": "/media/video-poster.svg",
     "sources": [
       {
-        "src": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+        "src": "/media/video-intro.mp4",
         "type": "video/mp4"
-      },
-      {
-        "src": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-        "type": "video/webm"
       }
     ],
     "controls": true,
